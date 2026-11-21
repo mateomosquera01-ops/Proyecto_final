@@ -1,7 +1,7 @@
 # Proyecto_final
 Se establece un caso de estudio en el que se crea una página web dedicada a la venta de productos textiles haciendo uso de google IA studio, haciendo parte backend con postgresSQL y un front end javascript, typescript y HTML 
 
-# Nombre de mi Proyecto Final
+# página web full stack Tec.tex
 
 la págia web tiene el objetivo de brindar información de productos y consultorías de empresas textiles 
 
