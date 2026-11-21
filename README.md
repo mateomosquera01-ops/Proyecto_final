@@ -3,7 +3,7 @@ Se establece un caso de estudio en el que se crea una página web dedicada a la 
 
 # Nombre de mi Proyecto Final
 
-Descripción breve del producto digital, su propósito y el problema que busca solucionar.
+la págia web tiene el objetivo de brindar información de productos y consultorías de empresas textiles 
 
 ## Vista previa
 
@@ -22,13 +22,14 @@ Descripción breve del producto digital, su propósito y el problema que busca s
 - JavaScript ES6+
 - Google AI Studio / Gemini
 - Git y GitHub
+- postgresSQL
 
 ## Metodología de desarrollo
 
 1. Planeación y definición del problema.
 2. Investigación y diseño de la solución.
 3. Desarrollo asistido por inteligencia artificial.
-4. Pruebas, correcciones y optimización.
+4. informe de auditoría crítica del código generado por IA
 5. Publicación y documentación.
 
 ## Personalización
@@ -41,6 +42,6 @@ Descripción breve del producto digital, su propósito y el problema que busca s
 
 ## Créditos
 
-Proyecto desarrollado por [Tu nombre].
+Proyecto desarrollado por [Mateo mosquera].
 
 Proyecto académico — Entregable E3.0.
