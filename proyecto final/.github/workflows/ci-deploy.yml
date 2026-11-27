@@ -1,0 +1,43 @@
+name: CI — Build & Deploy Frontend (GitHub Pages)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    name: Build React + Deploy a GitHub Pages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout código fuente
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'proyecto final/frontend/package-lock.json'
+
+      - name: Instalar dependencias del frontend
+        working-directory: "proyecto final/frontend"
+        run: npm ci
+
+      - name: Build para GitHub Pages
+        working-directory: "proyecto final/frontend"
+        env:
+          GITHUB_PAGES: 'true'
+          VITE_API_URL: ${{ secrets.VITE_API_URL || 'https://textech-api.example.com/api/v1' }}
+        run: npm run build:gh-pages
+
+      - name: Deploy a GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: "proyecto final/frontend/dist"
+          cname: ""
