@@ -2,18 +2,16 @@
 # Flujo de Trabajo - Proyecto Final
 
 ## 1. Planeación y análisis
-- Definir el objetivo del proyecto.
-- Identificar las necesidades de los usuarios.
-- Establecer los requerimientos funcionales y no funcionales.
-- Definir las tecnologías de desarrollo.
+- Realizar una página web con el objetivo de atraer nuevos clientes y usuarios en la que los usuarios puedan acceder a todo el sistema
+- El proyecto consiste en el desarrollo de una plataforma web Full Stack orientada a la comercialización y consulta de productos textiles, cuyo propósito principal es facilitar la visualización, búsqueda, clasificación y administración de un catálogo digital de productos.
+- tecnologías de desarrollo impulsadas con google IA studio y antigravity, conectado con netlify y webhook n8n
 - Organizar las actividades mediante GitHub Projects.
 
 ## 2. Diseño y arquitectura
-- Diseñar la interfaz de usuario.
+- Diseñar la interfaz de usuario haciendo uso de bootstrap
 - Definir la estructura del frontend.
 - Planificar la arquitectura del backend.
 - Diseñar el modelo entidad-relación de la base de datos.
-- Establecer la comunicación mediante una API REST.
 
 ## 3. Desarrollo del frontend
 - Crear la estructura HTML5.

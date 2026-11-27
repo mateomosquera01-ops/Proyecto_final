@@ -3,7 +3,7 @@ Se establece un caso de estudio en el que se crea una página web dedicada a la 
 
 # página web full stack Tec.tex
 
-la págia web tiene el objetivo de brindar información de productos y consultorías de empresas textiles 
+la págia web tiene el objetivo de brindar información de productos y consultorías de empresas  
 
 ## Vista previa
 
@@ -22,7 +22,10 @@ la págia web tiene el objetivo de brindar información de productos y consultor
 - JavaScript ES6+
 - Google AI Studio / Gemini
 - Git y GitHub
-- postgresSQL
+- PostgresSQL
+- Netlify
+- Supabase
+- n8n
 
 ## Metodología de desarrollo
 
@@ -31,7 +34,16 @@ la págia web tiene el objetivo de brindar información de productos y consultor
 3. Desarrollo asistido por inteligencia artificial.
 4. informe de auditoría crítica del código generado por IA
 5. Publicación y documentación.
-
+## Roadmap del proyecto
+- Análisis y definición de requerimientos.
+- Diseño de arquitectura.
+- Diseño de interfaz UI/UX.
+- Modelado de base de datos.
+- Configuración inicial de Supabase.
+- Desarrollo de página principal.
+- Desarrollo del catálogo.
+- Pruebas funcionales y de seguridad.
+- Despliegue en Netlify.
 ## Personalización
 
 1. Clonar el repositorio.
