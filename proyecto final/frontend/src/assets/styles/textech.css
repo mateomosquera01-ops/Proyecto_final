@@ -1,0 +1,131 @@
+:root {
+  --color-shades-900: #f6d5d5;
+  --color-shades-800: #eeaaaa;
+  --color-shades-700: #e77e7e;
+  --color-shades-600: #e25050;
+  --textech-dark: #1f2937;
+  --textech-muted: #4b5563;
+  --textech-surface: #ffffff;
+  --textech-bg: #fffafa;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--textech-bg);
+  color: var(--textech-dark);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* Accesibilidad WCAG 2.1 AA: foco visible en todo elemento interactivo */
+:focus-visible {
+  outline: 3px solid var(--color-shades-600);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 16px;
+  background: var(--color-shades-600);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 4px;
+  z-index: 1050;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+.bg-textech-primary {
+  background-color: var(--color-shades-600) !important;
+  color: #ffffff !important;
+}
+
+.bg-textech-soft {
+  background-color: var(--color-shades-900) !important;
+}
+
+.text-textech-primary {
+  color: var(--color-shades-600) !important;
+}
+
+.btn-textech {
+  background-color: var(--color-shades-600);
+  border-color: var(--color-shades-600);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.btn-textech:hover,
+.btn-textech:focus-visible {
+  background-color: #c83c3c;
+  border-color: #c83c3c;
+  color: #ffffff;
+}
+
+.btn-textech:disabled {
+  background-color: var(--color-shades-800);
+  border-color: var(--color-shades-800);
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+.btn-outline-textech {
+  color: var(--color-shades-600);
+  border-color: var(--color-shades-600);
+  font-weight: 600;
+}
+
+.btn-outline-textech:hover,
+.btn-outline-textech:focus-visible {
+  background-color: var(--color-shades-600);
+  color: #ffffff;
+}
+
+.hero-textech {
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-shades-900) 100%);
+  border-bottom: 1px solid var(--color-shades-800);
+}
+
+.benefit-card {
+  border: 1px solid var(--color-shades-900);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(226, 80, 80, 0.14);
+}
+
+.benefit-icon-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background-color: var(--color-shades-900);
+  color: var(--color-shades-600);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+/* Estados de validación progresiva para formularios */
+.textech-input:focus {
+  border-color: var(--color-shades-700);
+  box-shadow: 0 0 0 0.2rem rgba(226, 80, 80, 0.2);
+}
+
+.textech-input.is-valid {
+  border-color: #198754;
+}
+
+.textech-input.is-invalid {
+  border-color: #dc3545;
+}
