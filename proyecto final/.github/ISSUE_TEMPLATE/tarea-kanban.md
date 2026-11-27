@@ -1,5 +1,5 @@
 ---
-name: Tarea Kanban (Textech)
+name: lista de tareas (Textech)
 about: Plantilla para registrar tareas del flujo de trabajo en el tablero Kanban de Textech.
 title: "[Etapa X] "
 labels: "kanban"
