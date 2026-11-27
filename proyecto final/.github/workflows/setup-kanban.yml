@@ -1,0 +1,198 @@
+name: Inicializar Milestones, Labels e Issues (10 Etapas)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  bootstrap-kanban:
+    name: Crear Labels, Milestones e Issues de las 10 Etapas
+    runs-on: ubuntu-latest
+    steps:
+      - name: Crear Labels, Milestones e Issues en mateomosquera01-ops/Proyecto_final
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            const etapas = [
+              {
+                num: 1,
+                label: "etapa-1-planeacion",
+                color: "0e8a16",
+                milestone: "1. Planeación y análisis",
+                desc: "Plataforma web Full-Stack Textech, integración con Netlify/GitHub Pages y webhook n8n, organización en GitHub Projects.",
+                tasks: [
+                  "Definir objetivos, alcance y usuarios de la plataforma Textech",
+                  "Establecer requerimientos funcionales y no funcionales",
+                  "Definir stack tecnológico (React+TS+Bootstrap, Express+Prisma+Supabase, n8n)",
+                  "Configurar tablero Kanban en GitHub Projects y flujo de 10 etapas"
+                ]
+              },
+              {
+                num: 2,
+                label: "etapa-2-diseno-arquitectura",
+                color: "1d76db",
+                milestone: "2. Diseño y arquitectura",
+                desc: "Interfaz de usuario con Bootstrap, estructura frontend, arquitectura modular backend y modelo Entidad-Relación (ER).",
+                tasks: [
+                  "Diseñar interfaz de usuario con Bootstrap 5 y paleta corporativa (#e25050)",
+                  "Definir estructura modular de carpetas frontend y backend",
+                  "Diseñar modelo Entidad-Relación (Seguridad, Captación, Catálogo, Interacción)",
+                  "Definir contratos de API REST (/api/v1/...) y DTOs limpios"
+                ]
+              },
+              {
+                num: 3,
+                label: "etapa-3-desarrollo-frontend",
+                color: "5319e7",
+                milestone: "3. Desarrollo del frontend",
+                desc: "HTML5 semántico, CSS3 responsive, JavaScript ES6+/TypeScript, formularios interactivos con validación progresiva.",
+                tasks: [
+                  "Implementar Landing Page Textech (Hero, Beneficios, Catálogo público)",
+                  "Implementar formulario LeadForm con validación progresiva y accesibilidad WCAG 2.1 AA",
+                  "Desarrollar Panel Administrativo protegido (Dashboard, Productos, Leads)",
+                  "Aplicar variables CSS corporativas y diseño responsive"
+                ]
+              },
+              {
+                num: 4,
+                label: "etapa-4-desarrollo-backend",
+                color: "d93f0b",
+                milestone: "4. Desarrollo del backend",
+                desc: "Servidor Express, lógica de negocio, endpoints REST (/api/v1/...), validaciones, manejo HTTP y errores (try/catch).",
+                tasks: [
+                  "Configurar Express, CORS, Rate Limiting y middleware global de errores",
+                  "Implementar módulos auth, leads, products, categories, catalogs e inquiries",
+                  "Integrar webhook n8n en POST /api/v1/leads y trazabilidad en email_logs",
+                  "Garantizar DTOs limpios sin exposición de esquema de BD"
+                ]
+              },
+              {
+                num: 5,
+                label: "etapa-5-base-datos",
+                color: "006b75",
+                milestone: "5. Diseño e implementación de la base de datos",
+                desc: "Entidades, atributos, PK/FK, conexión Prisma-Supabase, RLS y operaciones CRUD.",
+                tasks: [
+                  "Implementar schema.prisma con UUIDs y mapeo snake_case para los 4 módulos ER",
+                  "Generar script supabase-init.sql con ENABLE ROW LEVEL SECURITY en todas las tablas",
+                  "Crear seed.ts con roles, permisos y catálogo textil inicial",
+                  "Verificar operaciones CRUD mediante Prisma ORM"
+                ]
+              },
+              {
+                num: 6,
+                label: "etapa-6-integracion",
+                color: "fbca04",
+                milestone: "6. Integración de componentes",
+                desc: "Conexión frontend-backend vía HTTP, renderizado dinámico, mensajes de confirmación/error en DOM.",
+                tasks: [
+                  "Conectar frontend con API REST (/api/v1/...) mediante servicios Axios/Fetch",
+                  "Renderizar catálogo dinámico desde GET /api/v1/products",
+                  "Mostrar alertas de confirmación y error en el DOM (sin alert())",
+                  "Probar flujo completo de envío de lead -> n8n -> email_logs"
+                ]
+              },
+              {
+                num: 7,
+                label: "etapa-7-pruebas",
+                color: "b60205",
+                milestone: "7. Pruebas y optimización",
+                desc: "Pruebas funcionales, validación de formularios, CRUD, rendimiento y accesibilidad WCAG 2.1 AA.",
+                tasks: [
+                  "Ejecutar pruebas unitarias e integración en backend",
+                  "Validar formularios, foco automático al primer error y estados visuales",
+                  "Comprobar operaciones CRUD de inventario y leads en panel admin",
+                  "Auditar accesibilidad WCAG 2.1 AA y rendimiento"
+                ]
+              },
+              {
+                num: 8,
+                label: "etapa-8-control-versiones",
+                color: "c2e0c6",
+                milestone: "8. Control de versiones",
+                desc: "Commits semánticos, ramas (main, develop, feature/*), documentación de problemas vía Issues y actualización del tablero Kanban.",
+                tasks: [
+                  "Aplicar commits semánticos (feat, fix, docs, chore)",
+                  "Gestionar ramas main, develop y feature/*",
+                  "Registrar avances e incidencias mediante Issues y Pull Requests",
+                  "Mantener sincronizado el tablero Kanban"
+                ]
+              },
+              {
+                num: 9,
+                label: "etapa-9-despliegue",
+                color: "bfdadc",
+                milestone: "9. Despliegue y publicación",
+                desc: "Build de producción frontend (netlify.toml y soporte GitHub Pages), alojamiento backend, base de datos en Supabase y verificación entre servicios.",
+                tasks: [
+                  "Configurar netlify.toml y vite.config.ts para Netlify y GitHub Pages",
+                  "Desplegar backend Node/Express y configurar variables de entorno",
+                  "Verificar conexión en producción con Supabase y webhook n8n",
+                  "Validar comunicación entre servicios publicados"
+                ]
+              },
+              {
+                num: 10,
+                label: "etapa-10-documentacion",
+                color: "d4c5f9",
+                milestone: "10. Documentación y evaluación final",
+                desc: "README.md completo, documentación técnica en docs/, verificación de commits/Kanban y base documental para el informe final de reflexión.",
+                tasks: [
+                  "Redactar README.md completo con arquitectura, instalación y endpoints",
+                  "Completar documentación técnica y diagramas en docs/",
+                  "Verificar historial de commits, Issues y tablero Kanban",
+                  "Elaborar docs/reflexion-final.md para el informe final"
+                ]
+              }
+            ];
+
+            // Crear labels base
+            const baseLabels = [
+              { name: "kanban", color: "ededed", description: "Tarea gestionada en el tablero Kanban" },
+              { name: "bug", color: "d73a4a", description: "Error reportado en la plataforma" }
+            ];
+            for (const lbl of [...baseLabels, ...etapas.map(e => ({ name: e.label, color: e.color, description: e.milestone }))]) {
+              try {
+                await github.rest.issues.createLabel({ owner, repo, ...lbl });
+              } catch (err) {
+                if (err.status !== 422) throw err;
+              }
+            }
+
+            // Crear milestones e issues
+            const existingMilestones = await github.rest.issues.listMilestones({ owner, repo, state: "all" });
+            const existingIssues = await github.rest.issues.listForRepo({ owner, repo, state: "all", per_page: 100 });
+
+            for (const etapa of etapas) {
+              let ms = existingMilestones.data.find(m => m.title === etapa.milestone);
+              if (!ms) {
+                const res = await github.rest.issues.createMilestone({
+                  owner,
+                  repo,
+                  title: etapa.milestone,
+                  description: etapa.desc
+                });
+                ms = res.data;
+              }
+
+              const issueTitle = `[Etapa ${etapa.num}] ${etapa.milestone}`;
+              const alreadyExists = existingIssues.data.some(i => i.title === issueTitle);
+              if (!alreadyExists) {
+                const checklist = etapa.tasks.map(t => `- [ ] ${t}`).join("\n");
+                await github.rest.issues.create({
+                  owner,
+                  repo,
+                  title: issueTitle,
+                  body: `## Objetivo\n${etapa.desc}\n\n## Subtareas\n${checklist}\n`,
+                  labels: ["kanban", etapa.label],
+                  milestone: ms.number
+                });
+              }
+            }

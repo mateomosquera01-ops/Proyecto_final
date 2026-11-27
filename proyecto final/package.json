@@ -1,0 +1,15 @@
+{
+  "name": "plataforma-textil-textech",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Plataforma web Full-Stack Textech para comercialización, catálogo digital textil y captación de clientes.",
+  "scripts": {
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "build:backend": "npm --prefix backend run build",
+    "prisma:generate": "npm --prefix backend run prisma:generate",
+    "prisma:migrate": "npm --prefix backend run prisma:migrate",
+    "prisma:seed": "npm --prefix backend run prisma:seed"
+  }
+}

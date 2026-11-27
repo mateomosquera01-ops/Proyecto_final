@@ -1,0 +1,26 @@
+name: Sincronizar Kanban en GitHub Projects
+
+on:
+  issues:
+    types:
+      - opened
+      - reopened
+  pull_request:
+    types:
+      - opened
+      - reopened
+
+jobs:
+  add-to-kanban:
+    name: Agregar Issue/PR al Tablero Kanban
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add to GitHub Project (Kanban)
+        uses: actions/add-to-project@v1.0.2
+        with:
+          # Requiere un Personal Access Token (classic o fine-grained) con permisos 'repo' y 'project'
+          # configurado en Settings -> Secrets and variables -> Actions -> ADD_TO_PROJECT_PAT
+          project-url: https://github.com/users/mateomosquera01-ops/projects/1
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT || secrets.GITHUB_TOKEN }}
+          labeled: ""
+          label-operator: OR
