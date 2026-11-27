@@ -1,0 +1,129 @@
+{
+  "name": "Textech - Envío Automático de Catálogo Digital",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "textech-lead",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-textech-lead",
+      "name": "Webhook Lead Textech",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "textech-lead-webhook"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.body.email}}",
+              "operation": "isNotEmpty"
+            },
+            {
+              "value1": "={{$json.body.fullName}}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "validate-lead-payload",
+      "name": "Validar Payload Lead",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "catalogo@textech.com",
+        "toEmail": "={{$json.body.email}}",
+        "subject": "=Tu Catálogo Textech 2026, {{$json.body.fullName}}",
+        "html": "=<div style=\"font-family: Arial, sans-serif; color: #222; max-width: 600px;\"><h2 style=\"color: #e25050;\">¡Hola {{$json.body.fullName}}!</h2><p>Gracias por tu interés en <strong>Textech</strong> como <strong>{{$json.body.interestRole}}</strong>.</p><p>Adjuntamos el enlace directo a nuestro catálogo oficial <strong>{{$json.body.catalogTitle}}</strong>:</p><p><a href=\"{{$json.body.catalogPdfUrl}}\" style=\"display: inline-block; padding: 12px 20px; background-color: #e25050; color: #ffffff; text-decoration: none; border-radius: 6px;\">Descargar Catálogo Textech</a></p><p style=\"font-size: 12px; color: #666;\">Tu mensaje registrado: \"{{$json.body.message}}\"</p></div>",
+        "options": {}
+      },
+      "id": "send-catalog-email",
+      "name": "Enviar Catálogo por Correo",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [740, 220]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"ok\": true,\n  \"messageId\": \"textech-{{$json.body.leadId}}\",\n  \"deliveredTo\": \"{{$json.body.email}}\"\n}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "respond-success",
+      "name": "Responder Éxito al Backend",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [980, 220]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"ok\": false,\n  \"error\": \"Payload de lead incompleto\"\n}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "respond-bad-request",
+      "name": "Responder Error Validación",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [740, 420]
+    }
+  ],
+  "connections": {
+    "Webhook Lead Textech": {
+      "main": [
+        [
+          {
+            "node": "Validar Payload Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validar Payload Lead": {
+      "main": [
+        [
+          {
+            "node": "Enviar Catálogo por Correo",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Responder Error Validación",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar Catálogo por Correo": {
+      "main": [
+        [
+          {
+            "node": "Responder Éxito al Backend",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "textech-envio-catalogo-v1"
+}
